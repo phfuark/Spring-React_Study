@@ -23,8 +23,8 @@ public class ProductService {
         return pr.findAll();
     }
 
-    // Register product
-    public ResponseEntity<?> register(ProductModel pm){
+    // Register or Change a product
+    public ResponseEntity<?> registerOrChange(ProductModel pm, String action){
         if(pm.getName().equals("")){
             prr.setMessage("Nome de produto inválido!");
             return new ResponseEntity<ProductResponse>(prr, HttpStatus.BAD_REQUEST);
@@ -32,7 +32,11 @@ public class ProductService {
             prr.setMessage("Nome de marca inválido!");
             return new ResponseEntity<ProductResponse>(prr, HttpStatus.BAD_REQUEST);
         } else{
-            return new ResponseEntity<ProductModel>(pr.save(pm), HttpStatus.CREATED);
+            if(action.equals("Change")){
+                return new ResponseEntity<ProductModel>(pr.save(pm), HttpStatus.OK);
+            } else{
+                return new ResponseEntity<ProductModel>(pr.save(pm), HttpStatus.CREATED);
+            }
         }
     }   
 

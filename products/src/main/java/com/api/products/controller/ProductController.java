@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -30,8 +31,12 @@ public class ProductController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody ProductModel pm){
-        return ps.register(pm);
+        return ps.registerOrChange(pm, "Register");
     }
-    
+
+    @PutMapping("/change")
+    public ResponseEntity<?> change(@RequestBody ProductModel pm){
+        return ps.registerOrChange(pm, "Change");
+    }
 
 }
