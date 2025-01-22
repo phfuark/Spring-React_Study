@@ -1,5 +1,7 @@
 function Table(){
-    return <h1>Table</h1>
+    return(
+        <h1>sim</h1>
+    )
 }
 
 export default Table
