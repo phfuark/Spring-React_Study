@@ -10,10 +10,10 @@ function App() {
 
   // use Effect
   useEffect(()=>{
-    fetch("http://localhost:8080/listAll")
+    fetch("http://localhost:3001/listAll")
     .then(returno => returno.json())
     .then(convertReturn => setProducts(convertReturn));
-  }, []);
+  }, []); 
 
   return (
     <div>
