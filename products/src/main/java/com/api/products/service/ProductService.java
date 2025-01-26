@@ -16,7 +16,7 @@ public class ProductService {
     private ProductRepository pr;
 
     @Autowired
-    private ProductResponse prr;
+    private ProductResponse NAO;
     
     // List All
     public Iterable<ProductModel> listAll(){
@@ -26,11 +26,11 @@ public class ProductService {
     // Register or Change a product
     public ResponseEntity<?> registerOrChange(ProductModel pm, String action){
         if(pm.getName().equals("")){
-            prr.setMessage("Nome de produto inválido!");
-            return new ResponseEntity<ProductResponse>(prr, HttpStatus.BAD_REQUEST);
+            NAO.setMessage("Nome de produto inválido!");
+            return new ResponseEntity<ProductResponse>(NAO, HttpStatus.BAD_REQUEST);
         }else if(pm.getBrand().equals("")){
-            prr.setMessage("Nome de marca inválido!");
-            return new ResponseEntity<ProductResponse>(prr, HttpStatus.BAD_REQUEST);
+            NAO.setMessage("Nome de marca inválido!");
+            return new ResponseEntity<ProductResponse>(NAO, HttpStatus.BAD_REQUEST);
         } else{
             if(action.equals("Change")){
                 return new ResponseEntity<ProductModel>(pr.save(pm), HttpStatus.OK);
@@ -46,8 +46,8 @@ public class ProductService {
     public ResponseEntity<ProductResponse> remove(long code){
         pr.deleteById(code);
 
-        prr.setMessage("Produto deletado com sucesso!");
-        return new ResponseEntity<ProductResponse>(prr, HttpStatus.OK);
+        NAO.setMessage("Produto deletado com sucesso!");
+        return new ResponseEntity<ProductResponse>(NAO, HttpStatus.OK);
     }
 
 }
